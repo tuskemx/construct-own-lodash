@@ -15,26 +15,47 @@ On this sprint we'll implement lowbar.js, our own version of the popular utiliti
 These are the core functions you should aim to get finished. Note that some of these names will look familiar, but you need to check the documentation as they may offer additional functionality.
 
 • identity
+
 • values
+
 • last
+
 • drop
+
 • clamp
+
 • flatten
+
 • forEach
+
 • indexOf
+
 • includes
+
 • filter
+
 • map
+
 • reject
+
 • uniq
+
 • without
+
 • partition
+
 • sampleSize
+
 • reduce
+
 • every
+
 • some
+
 • zip
+
 • defaults
+
 • flip
 
 You should be heavily referencing the APIs of the following:
@@ -46,21 +67,34 @@ You should be heavily referencing the APIs of the following:
 ### Advanced
 
 • chunk
+
 • remove
+
 • once
+
 • negate
+
 • shuffle
+
 • conformsTo
+
 • sortedIndex
-• sortBy 
+
+• sortBy
+
 • difference
+
 • intersection
+
 • delay
 
 ### *Very* Advanced
 
 • partial
-• memoize NOTE: You do not need to attempt the second argument (resolver) or making the cache property available. 
+
+• memoize NOTE: You do not need to attempt the second argument (resolver) or making the cache property available.
+
 • invoke
+
 • invokeMap
 
