@@ -16,27 +16,17 @@ These are the core functions you should aim to get finished. Note that some of t
 
 • identity
 
-• values
-
-• last
-
 • drop
-
-• clamp
-
-• flatten
 
 • forEach
 
-• indexOf
+• every
 
-• includes
-
-• filter
+• some
 
 • map
 
-• reject
+• filter
 
 • uniq
 
@@ -47,10 +37,6 @@ These are the core functions you should aim to get finished. Note that some of t
 • sampleSize
 
 • reduce
-
-• every
-
-• some
 
 • zip
 
@@ -72,8 +58,6 @@ You should be heavily referencing the APIs of the following:
 
 • once
 
-• negate
-
 • shuffle
 
 • conformsTo
@@ -92,7 +76,8 @@ You should be heavily referencing the APIs of the following:
 
 • partial
 
-• memoize NOTE: You do not need to attempt the second argument (resolver) or making the cache property available.
+• memoize 
+    NOTE: You do not need to attempt the second argument (resolver) or making the cache property available.
 
 • invoke
 
