@@ -1,15 +1,15 @@
 const {expect} = require('chai');
 
-const {identity} = require('../lowbar');
+const _ = require('../lowbar');
 
 describe('#identity', () => {
   it('returns the value passed as an argument', () => {
-    expect(identity(3)).to.equal(3);
-    expect(identity('hello')).to.equal('hello');
-    expect(identity(true)).to.equal(true);
+    expect(_.identity(3)).to.equal(3);
+    expect(_.identity('hello')).to.equal('hello');
+    expect(_.identity(true)).to.equal(true);
   });
   it('returns a reference to the same reference type passed as an argument', () => {
     const arr = [];
-    expect(identity(arr)).to.equal(arr);
+    expect(_.identity(arr)).to.equal(arr);
   });
 });
