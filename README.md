@@ -14,9 +14,12 @@ On this sprint we'll implement lowbar.js, our own version of the popular utiliti
 
 These are the core functions you should aim to get finished. Note that some of these names will look familiar, but you need to check the documentation as they may offer additional functionality.
 
+
 • identity
 
-• drop
+• take
+
+• uniq
 
 • forEach
 
@@ -28,21 +31,19 @@ These are the core functions you should aim to get finished. Note that some of t
 
 • filter
 
-• uniq
-
-• without
-
-• partition
-
-• sampleSize
-
 • reduce
 
-• zip
+• once
 
-• defaults
+• before
 
-• flip
+• spread
+
+• after
+
+• overArgs
+
+
 
 You should be heavily referencing the APIs of the following:
 
@@ -50,13 +51,13 @@ You should be heavily referencing the APIs of the following:
 2. [The Chai Assertion Library](http://chaijs.com/)
 3. [Testing with spies](http://sinonjs.org/)
 
+
 ### Advanced
+
 
 • chunk
 
 • remove
-
-• once
 
 • shuffle
 
@@ -71,6 +72,7 @@ You should be heavily referencing the APIs of the following:
 • intersection
 
 • delay
+
 
 ### *Very* Advanced
 
