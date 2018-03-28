@@ -23,10 +23,6 @@ These are the core functions you should aim to get finished. Note that some of t
 
 • forEach
 
-• every
-
-• some
-
 • map
 
 • filter
