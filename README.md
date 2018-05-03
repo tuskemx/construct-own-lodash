@@ -21,9 +21,9 @@ These are the core functions you should aim to get finished. Note that some of t
 
 • uniq
 
-• forEach
-
 • map
+
+• forEach
 
 • filter
 
