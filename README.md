@@ -17,11 +17,11 @@ These are the core functions you should aim to get finished. Note that some of t
 
 • identity
 
+• fromPairs
+
 • fill
 
 • map
-
-• forEach
 
 • filter
 
