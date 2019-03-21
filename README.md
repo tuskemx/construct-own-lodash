@@ -17,9 +17,7 @@ These are the core functions you should aim to get finished. Note that some of t
 
 • identity
 
-• take
-
-• uniq
+• fill
 
 • map
 
