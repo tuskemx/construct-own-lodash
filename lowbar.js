@@ -59,11 +59,12 @@ _.once = (func) => {
   
   let count = 1;
   function limiter() {
-    count--;
-  if (count > 0) return func; 
-console.log(count);
+    
+  if (count > 0) count--; console.log(count);
+   return func; 
   }
 
+limiter();
 limiter();
   
 

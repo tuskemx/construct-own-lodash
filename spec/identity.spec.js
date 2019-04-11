@@ -161,8 +161,8 @@ describe('reduce', () => {
         return a + b;
       }
   
-      const actualResult = _.once(sum(1, 2));
-      const desiredResult = 3;
+      const actualResult = _.once(limiter());
+      const desiredResult = 0;
       expect(actualResult).to.eql(desiredResult);
     });
   });
