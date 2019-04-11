@@ -134,7 +134,37 @@ describe('reduce', () => {
       let desiredResult = {'dog': 1, 'parrot': 1}
       expect(actualResult).to.eql(desiredResult);
     });
+    it('when not passed accumulator defaults accumulator as first array element', () => {
+    function sum(a, b) {
+      return a + b;
+    }
+    const input = [1, 2];
+    const actualResult = _.reduce(input, sum);
+    const desiredResult = 3;
+    expect(actualResult).to.eql(desiredResult);
   });
+});
 
-
+  describe('once', () => {
+    it('return function value', () => {
+      function sum(a, b) {
+        return a + b;
+      }
+  
+      const actualResult = _.once(sum(1, 2));
+      const desiredResult = 3;
+      expect(actualResult).to.eql(desiredResult);
+    });
+    
+    it('tests if count goes to 0', () => {
+      function sum(a, b) {
+        return a + b;
+      }
+  
+      const actualResult = _.once(sum(1, 2));
+      const desiredResult = 3;
+      expect(actualResult).to.eql(desiredResult);
+    });
+  });
+    
 
