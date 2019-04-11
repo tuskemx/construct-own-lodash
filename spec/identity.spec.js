@@ -48,3 +48,93 @@ describe('fill', () => {
     expect(actualResult).to.eql(desiredResult);
 });
 });
+
+describe('map', () => {
+  it('returns an empty array when passed one with no argument', () => {
+    const input = [];
+    const actualResult = _.map(input);
+    const desiredResult = [];
+    expect(actualResult).to.eql(desiredResult);
+  });
+  it('applies given function to each array element and returns a new array', () => {
+    function square(n) {
+      return n * n;
+    }
+
+    let actualResult = _.map([3, 4, 11], square);
+    let desiredResult = [9, 16, 121];
+    expect(actualResult).to.eql(desiredResult);
+    
+  });
+  it('returns new array and doesnt modify old', () => {
+    function square(n) {
+      return n;
+    }
+    const input = _.map([3, 11, 12], square);
+    const actualResult = _.map([3, 11, 12], square);
+    expect(actualResult).to.not.equal(input);
+});
+});
+
+describe('filter', () => {
+  it('returns an empty array when passed one with no argument', () => {
+    const input = [];
+    const actualResult = _.filter(input);
+    const desiredResult = [];
+    expect(actualResult).to.eql(desiredResult);
+  });
+  it('see if value is truthy based on function and is pushed to newarray ', () => {
+    function aboveZero(n) {
+      if (n > 0) return true; return false;
+    }
+    let actualResult = _.filter([-2, 2], aboveZero);
+    let desiredResult = [2];
+    expect(actualResult).to.eql(desiredResult);
+  });
+  it('item pushed to new array based on boolean value', () => {
+    function aboveZero(n) {
+      if (n > 0) return true; return false;
+    }
+    let actualResult = _.filter([-2, 2, 4, 5, 7, 9], aboveZero);
+    let desiredResult = [2, 4, 5, 7, 9];
+    expect(actualResult).to.eql(desiredResult);
+  });
+  it('returns new array and doesnt modify old', () => {
+    function square(n) {
+      return true
+    }
+    const input = _.filter([3, 11, 12], square);
+    const actualResult = _.filter([3, 11, 12], square);
+    expect(actualResult).to.not.equal(input);
+});
+it('returns copy of array with no changes if no function argument', () => {
+  let actualResult = _.filter([-2, 2]);
+  let desiredResult = [-2, 2];
+  expect(actualResult).to.eql(desiredResult);
+});
+});
+
+describe('reduce', () => {
+  it('returns an empty array when', () => {
+    function sum(a, b) {
+      return a + b;
+    }
+    const input = [1, 2];
+    const actualResult = _.reduce(input, sum, 0);
+    const desiredResult = 3;
+    expect(actualResult).to.eql(desiredResult);
+  });
+    it('returns reduced array key value pairs', () => {
+      function animal(a, b) {
+        if (a[b]) a[b]+=1;
+        else a[b] = 1; return a;
+      };
+      let input = ['dog', 'parrot'];
+      let actualResult = _.reduce(input, animal, {});
+      let desiredResult = {'dog': 1, 'parrot': 1}
+      expect(actualResult).to.eql(desiredResult);
+    });
+  });
+
+
+

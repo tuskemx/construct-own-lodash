@@ -15,21 +15,57 @@ _.fromPairs = (array) => {
 }
 
 _.fill = (array, value, start, end) => {
-  console.log(array);
-  console.log(value);
-  console.log(start);
-  console.log(end);
+
   
   for (let i = start; i < end; i++) {
     array.push(value);
   }
-  console.log(value);
-  console.log(start);
-  console.log(end);
-  console.log(array);
+ 
   return array;
    
 }
+
+_.map = (array, func) => {
+
+let newArray = []; 
+if (!func) return array;
+for (let i = 0; i < array.length; i++) {
+     newArray.push(func(array[i]));
+}
+     return newArray;
+}
+
+_.filter = (array, func) => {
+      let newArray = [];
+      if (!func) return array;
+
+  for (let i = 0; i < array.length; i++) {
+    if (func([array[i]]) === true) newArray.push(array[i]);
+  }
+    
+      return newArray;
+}
+
+_.reduce = (array, func, acc) => {
+  
+  for (let i = 0; i < array.length; i++) {
+    acc = func(acc, array[i]);
+  }
+
+  return acc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
