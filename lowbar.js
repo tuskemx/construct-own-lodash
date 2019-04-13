@@ -56,22 +56,33 @@ _.reduce = (array, func, acc) => {
 };
 
 _.once = (func) => {
-  
-  let count = 1;
-  function limiter() {
-    
-  if (count > 0) count--; console.log(count);
-   return func; 
+  let result = null;
+  return function () {
+    if (result === null) {
+      result = func();
+    }
+    return result;
+  };
+};
+
+
+_.before = (n, func) => {
+  let count = n;
+  let result;
+
+  return function () {
+    if (count > 0) {
+      count--;
+      result = func();
+    }
+    return result;
   }
-
-limiter();
-limiter();
-  
-
-
-
-
 }
+
+
+// (...) rest paraments
+//limit spread (...) operator
+
 
 
 

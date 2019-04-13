@@ -1,5 +1,5 @@
-const {expect} = require('chai');
-
+const { expect } = require('chai');
+const { spy } = require('sinon');
 const _ = require('../lowbar');
 
 describe('#identity', () => {
@@ -24,13 +24,13 @@ describe('fill', () => {
   it('expect one nested array to return object with key value', () => {
     const input = [['a', 3]];
     const actualResult = _.fromPairs(input);
-    const desiredResult = {'a': 3};
+    const desiredResult = { 'a': 3 };
     expect(actualResult).to.eql(desiredResult);
   });
   it('expect one nested array to return object with key value', () => {
     const input = [['a', 3], ['b', 4], ['c', 7]];
     const actualResult = _.fromPairs(input);
-    const desiredResult = {'a': 3, 'b': 4, 'c': 7};
+    const desiredResult = { 'a': 3, 'b': 4, 'c': 7 };
     expect(actualResult).to.eql(desiredResult);
 
   });
@@ -46,7 +46,7 @@ describe('fill', () => {
     let actualResult = _.fill([], 'a', 0, 3);
     let desiredResult = ['a', 'a', 'a'];
     expect(actualResult).to.eql(desiredResult);
-});
+  });
 });
 
 describe('map', () => {
@@ -64,7 +64,7 @@ describe('map', () => {
     let actualResult = _.map([3, 4, 11], square);
     let desiredResult = [9, 16, 121];
     expect(actualResult).to.eql(desiredResult);
-    
+
   });
   it('returns new array and doesnt modify old', () => {
     function square(n) {
@@ -73,7 +73,7 @@ describe('map', () => {
     const input = _.map([3, 11, 12], square);
     const actualResult = _.map([3, 11, 12], square);
     expect(actualResult).to.not.equal(input);
-});
+  });
 });
 
 describe('filter', () => {
@@ -106,12 +106,12 @@ describe('filter', () => {
     const input = _.filter([3, 11, 12], square);
     const actualResult = _.filter([3, 11, 12], square);
     expect(actualResult).to.not.equal(input);
-});
-it('returns copy of array with no changes if no function argument', () => {
-  let actualResult = _.filter([-2, 2]);
-  let desiredResult = [-2, 2];
-  expect(actualResult).to.eql(desiredResult);
-});
+  });
+  it('returns copy of array with no changes if no function argument', () => {
+    let actualResult = _.filter([-2, 2]);
+    let desiredResult = [-2, 2];
+    expect(actualResult).to.eql(desiredResult);
+  });
 });
 
 describe('reduce', () => {
@@ -124,17 +124,17 @@ describe('reduce', () => {
     const desiredResult = 3;
     expect(actualResult).to.eql(desiredResult);
   });
-    it('returns reduced array key value pairs', () => {
-      function animal(a, b) {
-        if (a[b]) a[b]+=1;
-        else a[b] = 1; return a;
-      };
-      let input = ['dog', 'parrot'];
-      let actualResult = _.reduce(input, animal, {});
-      let desiredResult = {'dog': 1, 'parrot': 1}
-      expect(actualResult).to.eql(desiredResult);
-    });
-    it('when not passed accumulator defaults accumulator as first array element', () => {
+  it('returns reduced array key value pairs', () => {
+    function animal(a, b) {
+      if (a[b]) a[b] += 1;
+      else a[b] = 1; return a;
+    };
+    let input = ['dog', 'parrot'];
+    let actualResult = _.reduce(input, animal, {});
+    let desiredResult = { 'dog': 1, 'parrot': 1 }
+    expect(actualResult).to.eql(desiredResult);
+  });
+  it('when not passed accumulator defaults accumulator as first array element', () => {
     function sum(a, b) {
       return a + b;
     }
@@ -145,26 +145,91 @@ describe('reduce', () => {
   });
 });
 
-  describe('once', () => {
-    it('return function value', () => {
-      function sum(a, b) {
-        return a + b;
-      }
-  
-      const actualResult = _.once(sum(1, 2));
-      const desiredResult = 3;
-      expect(actualResult).to.eql(desiredResult);
-    });
-    
-    it('tests if count goes to 0', () => {
-      function sum(a, b) {
-        return a + b;
-      }
-  
-      const actualResult = _.once(limiter());
-      const desiredResult = 0;
-      expect(actualResult).to.eql(desiredResult);
-    });
+describe('once', () => {
+  it('returns a new function', () => {
+    function sayHello() {
+      return "hello";
+    }
+
+    const newFunc = _.once(sayHello);
+
+    expect(newFunc).to.be.a('function');
+    expect(newFunc).to.not.equal(sayHello);
   });
-    
+  it('returns invocation of the original function', () => {
+    function inputFunc() {
+      return "Hello";
+    }
+
+    let onceFunc = _.once(inputFunc);
+    // const desiredResult = 3;
+    expect(onceFunc()).to.eql(inputFunc());
+  });
+  it('make sure only invokable once', () => {
+
+    const newSpy = spy();
+    const newFunc = _.once(newSpy);
+    newFunc();
+    newFunc();
+    newFunc();
+    console.log(newFunc.callCount);
+    expect(newSpy.callCount).to.eql(1);
+
+  });
+
+  it('make sure call count is 1 and returns first value on each call', () => {
+
+    const newSpy = spy(x => "Hello");
+
+    const newFunc = _.once(newSpy);
+
+    expect(newFunc()).to.equal("Hello");
+    expect(newFunc()).to.equal("Hello");
+    expect(newFunc()).to.equal("Hello");
+
+
+    expect(newSpy.callCount).to.eql(1);
+  });
+});
+
+describe.only('before', () => {
+  it('returns a new function', () => {
+    function sayHello() {
+      return "hello";
+    }
+
+    const newFunc = _.before(sayHello);
+
+    expect(newFunc).to.be.a('function');
+    expect(newFunc).to.not.equal(sayHello);
+  });
+  it('make sure only invokable n amount of times', () => {
+
+    const newSpy = spy();
+    const newFunc = _.before(3, newSpy);
+    newFunc();
+    newFunc();
+    newFunc();
+    newFunc();
+    console.log(newFunc.callCount);
+    expect(newSpy.callCount).to.eql(3);
+  });
+  it('returns value of last invocation', () => {
+
+    const newSpy = spy();
+    const newFunc = _.before(3, newSpy);
+    const spyCall = spy.lastCall(n, newSpy)
+    newFunc();
+    newFunc();
+    newFunc();
+    newFunc();
+    console.log(newSpy.callCount);
+    expect(newSpy.callCount).to.eql(n);
+     //get last lodash chai
+
+  });
+});
+
+
+
 
