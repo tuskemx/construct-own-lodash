@@ -214,18 +214,18 @@ describe.only('before', () => {
     console.log(newFunc.callCount);
     expect(newSpy.callCount).to.eql(3);
   });
-  it('returns value of last invocation', () => {
+  it('returns value of last invocation after called n times', () => {
 
     const newSpy = spy();
-    const newFunc = _.before(3, newSpy);
-    const spyCall = spy.lastCall(n, newSpy)
-    newFunc();
-    newFunc();
-    newFunc();
-    newFunc();
-    console.log(newSpy.callCount);
-    expect(newSpy.callCount).to.eql(n);
-     //get last lodash chai
+    const spyCall = _.before(3, newSpy);
+    spyCall();
+    spyCall();
+    spyCall();
+    spyCall();
+
+
+    expect(spy.thirdCall).to.equal(spy.lastCall);
+
 
   });
 });
